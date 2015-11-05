@@ -5,15 +5,16 @@ There are two options for navigation in RN: Navigator and NavigatorIOS.
 We’re using Navigator. Why here:
 https://facebook.github.io/react-native/docs/navigator-comparison.html#content
 
-So we’ve built our beautiful navbar. All good bar one major issue: Page transitions are slow and it takes a second or so for the app to *React* to a user touch and navigate to their selected page.
+So we’ve built our beautiful navbar. All good *bar* one major issue: Page transitions are slow and it takes a second or so for the app to *React* to a user's touch and navigate to their selected page.
 
-Why
-Navigator animations are controlled by the JavaScript thread. If there is a heavy animation or big component to process, this will lock up the JavaScript thread and it won't be unable to send data to the main thread - breaking the UX.
+###Why
 
-How we solved this
-The InteractionManager
+Navigator animations are controlled by the JavaScript thread. If there is a heavy animation or big component to process, this will lock up the JavaScript thread and it won't be unable to send data to the main thread until it's finished processing - which mean the view will not be updated and we've got a broken UX.
 
-“InteractionManager allows long-running work to be scheduled after any interactions/animations have completed.”
+###How we fixed this
+*The InteractionManager*
+
+"InteractionManager allows long-running work to be scheduled after any interactions/animations have completed."
 
 Applications can schedule tasks to run after interactions with the following:
 
