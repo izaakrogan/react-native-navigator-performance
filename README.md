@@ -2,14 +2,14 @@
 
 There are two options for navigation in RN: Navigator and NavigatorIOS.
 
-We’re using Navigator. Why here:
+We’re using Navigator. Here's why:
 https://facebook.github.io/react-native/docs/navigator-comparison.html#content
 
 So we’ve built our beautiful navbar. All good *bar* one major issue: Page transitions are slow and it takes a second or so for the app to *React* to a user's touch and navigate to their selected page.
 
 ###Why
 
-Navigator animations are controlled by the JavaScript thread. If there is a heavy animation or big component to process, this will lock up the JavaScript thread and it won't be unable to send data to the main thread until it's finished processing - which mean the view will not be updated and we've got a broken UX.
+Navigator animations are controlled by the JavaScript thread. If there is a heavy animation or a big component to process, this will lock up the JavaScript thread meaning the JavaScript thread won't send data to the main thread until it's finished processing - which mean the view will not be updated and we've got a broken UX.
 
 ###How we fixed this
 *The InteractionManager*
@@ -57,5 +57,7 @@ var NavChild = React.createClass({
   }
 });
 ```
+
+The effect of this is that when a user navigates to a new view using the navbar a simple loading page will display, the navigator will display any changes (such as a bold icon) and then, once the javascript thread has finished processing, the rest of your view will be displayed.
 
 One more thing. Taking your app out of development mode will significantly speed things up. Nice description of how to do this at the bottom of this blog by Herman Schaaf: http://herman.asia/building-a-flashcard-app-with-react-native
