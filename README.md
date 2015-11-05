@@ -20,7 +20,7 @@ Applications can schedule tasks to run after interactions with the following:
 
 ```js
 InteractionManager.runAfterInteractions(() => {
- // ...long-running synchronous task...
+ // do something after interactions
 });
 ```
 
